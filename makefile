@@ -17,7 +17,7 @@ help:
 
 PWD     := $(shell pwd)
 
-CUR_PROJECT ?= 00_test_zero
+CUR_PROJECT ?= 01_nios_test
 
 ########################################################
 # common make targets
@@ -97,3 +97,12 @@ synth_gui_q:
 
 synth_load_q:
 	quartus_pgm -c $(CABLE_NAME) -m JTAG -o "p;$(SYNTH_DIR)/output_files/$(CUR_PROJECT).sof"
+
+########################################################
+# Compile program for nios ii
+
+comp_prog:
+	mkdir -p synth/$(CUR_PROJECT)/out
+	nios2-elf-gcc -O1 synth/$(CUR_PROJECT)/sw/main.c -c -o synth/$(CUR_PROJECT)/out/main.o
+	nios2-elf-objdump -M no-aliases -S -w --disassemble-zeroes synth/$(CUR_PROJECT)/out/main.o > synth/$(CUR_PROJECT)/out/main.lst
+	nios2-elf-objcopy synth/$(CUR_PROJECT)/out/main.o synth/$(CUR_PROJECT)/system/main.hex -O ihex
