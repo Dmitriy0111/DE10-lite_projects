@@ -106,3 +106,9 @@ comp_prog:
 	nios2-elf-gcc -O1 synth/$(CUR_PROJECT)/sw/main.c -c -o synth/$(CUR_PROJECT)/out/main.o
 	nios2-elf-objdump -M no-aliases -S -w --disassemble-zeroes synth/$(CUR_PROJECT)/out/main.o > synth/$(CUR_PROJECT)/out/main.lst
 	nios2-elf-objcopy synth/$(CUR_PROJECT)/out/main.o synth/$(CUR_PROJECT)/system/main.hex -O ihex
+
+comp_nios_sw:
+	mkdir -p synth/$(CUR_PROJECT)/sw_out
+	make -C synth/$(CUR_PROJECT) all
+clean_nios_sw:
+	make -C synth/$(CUR_PROJECT) clean

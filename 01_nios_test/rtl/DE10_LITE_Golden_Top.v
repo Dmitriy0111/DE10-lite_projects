@@ -155,7 +155,7 @@ module DE10_LITE_Golden_Top(
 	system_0
 	(
 		.clk_clk		( clk			),
-		.gpio_0_gpd		( 				),
+		.gpio_0_gpd		(				),
 		.gpio_0_gpi		( SW[1 +: 8]	),
 		.gpio_0_gpo		( LEDR[0 +: 8]	),
 		.reset_reset_n	( rstn			) 
