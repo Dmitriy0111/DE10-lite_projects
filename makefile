@@ -99,16 +99,24 @@ synth_load_q:
 	quartus_pgm -c $(CABLE_NAME) -m JTAG -o "p;$(SYNTH_DIR)/output_files/$(CUR_PROJECT).sof"
 
 ########################################################
-# Compile program for nios ii
+# compile nios II program
 
-comp_prog:
-	mkdir -p synth/$(CUR_PROJECT)/out
-	nios2-elf-gcc -O1 synth/$(CUR_PROJECT)/sw/main.c -c -o synth/$(CUR_PROJECT)/out/main.o
-	nios2-elf-objdump -M no-aliases -S -w --disassemble-zeroes synth/$(CUR_PROJECT)/out/main.o > synth/$(CUR_PROJECT)/out/main.lst
-	nios2-elf-objcopy synth/$(CUR_PROJECT)/out/main.o synth/$(CUR_PROJECT)/system/main.hex -O ihex
+PROG_NAME = blink
+PROG_DIR = $(PWD)/synth/$(CUR_PROJECT)/sw
+OUT_DIR = $(PWD)/synth/$(CUR_PROJECT)/sw_out
+BSP_DIR = $(OUT_DIR)/$(PROG_NAME)_bsp
+APP_DIR = $(OUT_DIR)/$(PROG_NAME)
+SOPCINFO_DIR = $(PWD)/synth/$(CUR_PROJECT)/rtl/system/system.sopcinfo
+BSP_TYPE = hal
 
-comp_nios_sw:
-	mkdir -p synth/$(CUR_PROJECT)/sw_out
-	make -C synth/$(CUR_PROJECT) all
-clean_nios_sw:
-	make -C synth/$(CUR_PROJECT) clean
+comp_nios_prog:
+	mkdir -p $(OUT_DIR)
+	nios2-swexample-create --name=$(PROG_NAME) --type=hello_world --app-dir=$(APP_DIR) --bsp-dir=$(BSP_DIR) --sopc-file=$(SOPCINFO_DIR)
+	#nios2-bsp $(BSP_TYPE) $(OUT_DIR)/bsp $(SOPCINFO_DIR)
+	#nios2-app-generate-makefile --bsp-dir $(BSP_DIR) --elf-name $(OUT_DIR)/main.elf --app-dir $(APP_DIR) --src-dir $(PROG_DIR)
+	#make -C $(APP_DIR)
+	#make -C $(APP_DIR) mem_init_generate
+	#nios2-elf-objdump -M no-aliases -S -w --disasseble-zeroes $(OUT_DIR)/main.elf > $(OUT_DIR)/main.lst
+
+clean_nios_prog:
+	rm -rfd $(OUT_DIR)
