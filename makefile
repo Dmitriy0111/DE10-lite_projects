@@ -101,22 +101,33 @@ synth_load_q:
 ########################################################
 # compile nios II program
 
-PROG_NAME = blink
 PROG_DIR = $(PWD)/synth/$(CUR_PROJECT)/sw
 OUT_DIR = $(PWD)/synth/$(CUR_PROJECT)/sw_out
-BSP_DIR = $(OUT_DIR)/$(PROG_NAME)_bsp
-APP_DIR = $(OUT_DIR)/$(PROG_NAME)
+BSP_DIR = $(OUT_DIR)/bsp
+APP_DIR = $(OUT_DIR)/app
 SOPCINFO_DIR = $(PWD)/synth/$(CUR_PROJECT)/rtl/system/system.sopcinfo
 BSP_TYPE = hal
 
 comp_nios_prog:
 	mkdir -p $(OUT_DIR)
-	nios2-swexample-create --name=$(PROG_NAME) --type=hello_world --app-dir=$(APP_DIR) --bsp-dir=$(BSP_DIR) --sopc-file=$(SOPCINFO_DIR)
-	#nios2-bsp $(BSP_TYPE) $(OUT_DIR)/bsp $(SOPCINFO_DIR)
-	#nios2-app-generate-makefile --bsp-dir $(BSP_DIR) --elf-name $(OUT_DIR)/main.elf --app-dir $(APP_DIR) --src-dir $(PROG_DIR)
-	#make -C $(APP_DIR)
-	#make -C $(APP_DIR) mem_init_generate
-	#nios2-elf-objdump -M no-aliases -S -w --disasseble-zeroes $(OUT_DIR)/main.elf > $(OUT_DIR)/main.lst
+	nios2-bsp $(BSP_TYPE) $(OUT_DIR)/bsp $(SOPCINFO_DIR)
+	nios2-app-generate-makefile --bsp-dir $(BSP_DIR) --elf-name $(OUT_DIR)/main.elf --app-dir $(APP_DIR) --src-dir $(PROG_DIR)
+	make -C $(APP_DIR)
+	make -C $(APP_DIR) mem_init_generate
+	nios2-elf-objdump -M no-aliases -S -w --disasseble-zeroes $(OUT_DIR)/main.elf > $(OUT_DIR)/main.lst
 
 clean_nios_prog:
+	rm -rfd $(OUT_DIR)
+
+########################################################
+# compile riscv program
+
+PROG_DIR = $(PWD)/synth/$(CUR_PROJECT)/sw
+OUT_DIR = $(PWD)/synth/$(CUR_PROJECT)/sw_out
+
+comp_prog:
+	mkdir -p $(OUT_DIR)
+	make -C $(PWD)/synth/$(CUR_PROJECT) comp_prog
+
+clean_prog:
 	rm -rfd $(OUT_DIR)
