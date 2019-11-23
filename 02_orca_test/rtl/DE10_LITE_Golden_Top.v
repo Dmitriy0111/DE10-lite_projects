@@ -131,12 +131,21 @@ module DE10_LITE_Golden_Top(
 	logic   [0       : 0]   dir;
 	logic   [0       : 0]   en;
 	logic   [width-1 : 0]   cnt;
+	logic	[0 		 : 0]	i2c_0_sda_in;
+	logic	[0 		 : 0]	i2c_0_sda_oe;
+	logic	[0 		 : 0]	i2c_0_scl_in;
+	logic	[0 		 : 0]	i2c_0_scl_oe;
 
 	assign clk = MAX10_CLK1_50;
 	assign rstn = KEY[0];
 	assign dir = KEY[1];
 	assign en = SW[0];
 	assign LEDR[9 : 8] = cnt[width-1 -: 2];
+
+	assign i2c_0_scl_in = ARDUINO_IO[3];
+	assign ARDUINO_IO[3] = i2c_0_scl_oe ? 1'b0 : 1'bz;
+	assign i2c_0_sda_in = ARDUINO_IO[2];
+	assign ARDUINO_IO[2] = i2c_0_sda_oe ? 1'b0 : 1'bz;
 
 	counter
 	#(
@@ -158,7 +167,13 @@ module DE10_LITE_Golden_Top(
 		.gpio_0_gpd		(				),
 		.gpio_0_gpi		( SW[1 +: 8]	),
 		.gpio_0_gpo		( LEDR[0 +: 8]	),
-		.reset_reset_n	( rstn			) 
+		.reset_reset_n	( rstn			),
+		.uart_0_rxd		( ARDUINO_IO[0]	),
+		.uart_0_txd		( ARDUINO_IO[1]	),
+		.i2c_0_sda_in	( ),
+		.i2c_0_scl_in	( ),
+		.i2c_0_sda_oe	( ),
+		.i2c_0_scl_oe	( )
 	);
 
 //=======================================================

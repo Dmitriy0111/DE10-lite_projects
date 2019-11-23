@@ -6,7 +6,7 @@
    version="1.0"
    description=""
    tags=""
-   categories="" />
+   categories="System" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
    element clk_0
@@ -25,11 +25,291 @@
          type = "int";
       }
    }
+   element i2c_0
+   {
+      datum _sortIndex
+      {
+         value = "6";
+         type = "int";
+      }
+   }
+   element master_0
+   {
+      datum _sortIndex
+      {
+         value = "4";
+         type = "int";
+      }
+   }
    element onchip_memory2_0
    {
       datum _sortIndex
       {
          value = "3";
+         type = "int";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element orca_systems
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element uart_0
+   {
+      datum _sortIndex
+      {
+         value = "5";
          type = "int";
       }
    }
@@ -64,7 +344,13 @@
  <instanceScript></instanceScript>
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
  <interface name="gpio_0" internal="gpio_avalon_0.gpio" type="conduit" dir="end" />
+ <interface name="i2c_0" internal="i2c_0.i2c_serial" type="conduit" dir="end" />
  <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
+ <interface
+   name="uart_0"
+   internal="uart_0.external_connection"
+   type="conduit"
+   dir="end" />
  <module name="clk_0" kind="clock_source" version="18.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -73,6 +359,25 @@
  </module>
  <module name="gpio_avalon_0" kind="gpio_avalon" version="1.0" enabled="1">
   <parameter name="gpio_w" value="8" />
+ </module>
+ <module name="i2c_0" kind="altera_avalon_i2c" version="18.1" enabled="1">
+  <parameter name="FIFO_DEPTH" value="4" />
+  <parameter name="USE_AV_ST" value="0" />
+  <parameter name="clockRate" value="50000000" />
+ </module>
+ <module
+   name="master_0"
+   kind="altera_jtag_avalon_master"
+   version="18.1"
+   enabled="1">
+  <parameter name="AUTO_DEVICE" value="10M50DAF484C6GES" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="MAX 10" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="6" />
+  <parameter name="COMPONENT_CLOCK" value="0" />
+  <parameter name="FAST_VER" value="0" />
+  <parameter name="FIFO_DEPTHS" value="2" />
+  <parameter name="PLI_PORT" value="50000" />
+  <parameter name="USE_PLI" value="0" />
  </module>
  <module
    name="onchip_memory2_0"
@@ -91,7 +396,7 @@
   <parameter name="ecc_enabled" value="false" />
   <parameter name="enPRInitMode" value="false" />
   <parameter name="enableDiffWidth" value="false" />
-  <parameter name="initMemContent" value="true" />
+  <parameter name="initMemContent" value="false" />
   <parameter name="initializationFileName" value="onchip_mem.hex" />
   <parameter name="instanceID" value="NONE" />
   <parameter name="memorySize" value="65536" />
@@ -105,6 +410,22 @@
   <parameter name="useNonDefaultInitFile" value="false" />
   <parameter name="useShallowMemBlocks" value="false" />
   <parameter name="writable" value="true" />
+ </module>
+ <module name="uart_0" kind="altera_avalon_uart" version="18.1" enabled="1">
+  <parameter name="baud" value="115200" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="dataBits" value="8" />
+  <parameter name="fixedBaud" value="false" />
+  <parameter name="parity" value="NONE" />
+  <parameter name="simCharStream" value="" />
+  <parameter name="simInteractiveInputEnable" value="false" />
+  <parameter name="simInteractiveOutputEnable" value="false" />
+  <parameter name="simTrueBaud" value="false" />
+  <parameter name="stopBits" value="1" />
+  <parameter name="syncRegDepth" value="2" />
+  <parameter name="useCtsRts" value="false" />
+  <parameter name="useEopRegister" value="false" />
+  <parameter name="useRelativePathForSimFile" value="false" />
  </module>
  <module
    name="vectorblox_orca_0"
@@ -129,7 +450,7 @@
   <parameter name="DCACHE_WRITEBACK" value="1" />
   <parameter name="DC_REQUEST_REGISTER" value="1" />
   <parameter name="DC_RETURN_REGISTER" value="0" />
-  <parameter name="DIVIDE_ENABLE" value="0" />
+  <parameter name="DIVIDE_ENABLE" value="1" />
   <parameter name="DUC_REQUEST_REGISTER" value="0" />
   <parameter name="DUC_RETURN_REGISTER" value="0" />
   <parameter name="ENABLE_EXCEPTIONS" value="1" />
@@ -151,7 +472,7 @@
   <parameter name="LOG2_BURSTLENGTH" value="4" />
   <parameter name="MAX_IFETCHES_IN_FLIGHT" value="1" />
   <parameter name="MTIME_ENABLE" value="1" />
-  <parameter name="MULTIPLY_ENABLE" value="0" />
+  <parameter name="MULTIPLY_ENABLE" value="1" />
   <parameter name="NUM_EXT_INTERRUPTS" value="1" />
   <parameter name="PIPELINE_STAGES" value="4" />
   <parameter name="POWER_OPTIMIZED" value="0" />
@@ -169,9 +490,27 @@
    kind="avalon"
    version="18.1"
    start="vectorblox_orca_0.data"
+   end="i2c_0.csr">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00010040" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="vectorblox_orca_0.data"
    end="onchip_memory2_0.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="vectorblox_orca_0.data"
+   end="uart_0.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00010020" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -192,7 +531,27 @@
   <parameter name="baseAddress" value="0x0000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="master_0.master"
+   end="onchip_memory2_0.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="master_0.master"
+   end="gpio_avalon_0.s_0">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00010000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
  <connection kind="clock" version="18.1" start="clk_0.clk" end="gpio_avalon_0.clk" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="master_0.clk" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="uart_0.clk" />
  <connection
    kind="clock"
    version="18.1"
@@ -203,11 +562,22 @@
    version="18.1"
    start="clk_0.clk"
    end="vectorblox_orca_0.clock" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="i2c_0.clock" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="clk_0.clk_reset"
+   end="master_0.clk_reset" />
  <connection
    kind="reset"
    version="18.1"
    start="clk_0.clk_reset"
    end="vectorblox_orca_0.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="clk_0.clk_reset"
+   end="uart_0.reset" />
  <connection
    kind="reset"
    version="18.1"
@@ -218,6 +588,11 @@
    version="18.1"
    start="clk_0.clk_reset"
    end="gpio_avalon_0.reset_n" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="clk_0.clk_reset"
+   end="i2c_0.reset_sink" />
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
  <interconnectRequirement for="$system" name="qsys_mm.enableEccProtection" value="FALSE" />
  <interconnectRequirement for="$system" name="qsys_mm.insertDefaultSlave" value="FALSE" />

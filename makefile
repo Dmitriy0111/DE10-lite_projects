@@ -90,6 +90,7 @@ synth_create: synth_clean
 	cp -r $(SYNTH_TEMPLATE) $(SYNTH_DIR)
 
 synth_build_q:
+	make -C $(PWD)/synth/$(CUR_PROJECT) generate_qsys
 	quartus_sh --flow compile $(SYNTH_DIR)/$(CUR_PROJECT).qpf
 
 synth_gui_q:
@@ -134,3 +135,6 @@ clean_prog:
 
 init_sub_repo:
 	make -C $(PWD)/synth/$(CUR_PROJECT) init
+
+prog_dev:
+	make -C $(PWD)/synth/$(CUR_PROJECT) prog_dev

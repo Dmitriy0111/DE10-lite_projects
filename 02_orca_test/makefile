@@ -1,5 +1,5 @@
 
-PROG_NAME ?= gpio_test_asm
+PROG_NAME ?= gpio_test_c
 
 -include sw/$(PROG_NAME)/subdir.mk
 
@@ -10,10 +10,13 @@ clone_ip:
 
 init: \
 	clone_ip
+	
+generate_qsys:
+	qsys-generate rtl/orca_system/orca_systems.qsys --family=MAX10 --part=10M50DAF484C6GES --synthesis=VERILOG --simulation=VERILOG
 
 CCF	= -march=rv32i -mabi=ilp32
 LDF	= -b elf32-littleriscv
-CPF = ihex -O ihex
+CPF = -O ihex
 OBJDUMPF = -M no-aliases -S -w --disassemble-zeroes
 TOOL = riscv-none-embed
 
@@ -25,9 +28,17 @@ OBJCOPY = $(TOOL)-objcopy
 
 EXEC = sw_out/main.elf
 LST = sw_out/main.lst
+IHEX = sw_out/main.ihex
+HEX = sw_out/main
+PROG_TCL = sw_out/main.tcl
 
 comp_prog: $(EXEC)
+
+prog_dev:
+	system-console --script=$(PROG_TCL)
 
 $(EXEC): $(OBJS)
 	$(LD) -T sw/prog.ld $(OBJS) -o $(EXEC) $(LDF)
 	$(OBJDUMP) $(OBJDUMPF) $(EXEC) > $(LST)
+	$(OBJCOPY) $(EXEC) $(IHEX) $(CPF)
+	python sw/ihex2hex.py $(IHEX) $(HEX)

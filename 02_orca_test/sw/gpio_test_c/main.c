@@ -12,12 +12,12 @@
 
 #define SYNTH   1
 #define SIM     0
-#define RUNTYPE SIM
+#define RUNTYPE SYNTH
 
 #if   RUNTYPE == SIM
     #define delay_value 10
 #elif RUNTYPE == SYNTH
-    #define delay_value 100000
+    #define delay_value 10000
 #endif
 
 void main (void)
