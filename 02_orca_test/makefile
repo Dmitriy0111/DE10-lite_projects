@@ -1,15 +1,15 @@
 
-PROG_NAME ?= gpio_test_c
+PROG_NAME ?= gpio_test_asm
 
 -include sw/$(PROG_NAME)/subdir.mk
 
 ORCA_URL = https://github.com/VectorBlox/orca
 
-repo_init:
-	clone_ip
-
 clone_ip:
 	git clone $(ORCA_URL) rtl/orca_system/orca
+
+init: \
+	clone_ip
 
 CCF	= -march=rv32i -mabi=ilp32
 LDF	= -b elf32-littleriscv

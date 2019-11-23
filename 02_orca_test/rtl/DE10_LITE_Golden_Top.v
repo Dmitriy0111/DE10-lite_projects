@@ -151,8 +151,8 @@ module DE10_LITE_Golden_Top(
 		.cnt		( cnt		)
 	);
 
-	orca_system
-	orca_system_0
+	orca_systems
+	orca_systems_0
 	(
 		.clk_clk		( clk			),
 		.gpio_0_gpd		(				),

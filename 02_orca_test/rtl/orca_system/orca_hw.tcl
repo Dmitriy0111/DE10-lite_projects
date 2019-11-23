@@ -33,7 +33,6 @@ set_module_property EDITABLE true
 set_module_property REPORT_TO_TALKBACK false
 set_module_property ALLOW_GREYBOX_GENERATION false
 set_module_property REPORT_HIERARCHY false
-set_module_property ELABORATION_CALLBACK elaboration_callback
 add_documentation_link "Documentation" https://github.com/VectorBlox/risc-v
 #
 # file sets
@@ -42,57 +41,57 @@ add_fileset QUARTUS_SYNTH QUARTUS_SYNTH "" ""
 set_fileset_property QUARTUS_SYNTH TOP_LEVEL ORCA
 set_fileset_property QUARTUS_SYNTH ENABLE_RELATIVE_INCLUDE_PATHS false
 set_fileset_property QUARTUS_SYNTH ENABLE_FILE_OVERWRITE_MODE false
-add_fileset_file vblox_orca/utils.vhd VHDL PATH ../orca/ip/orca/hdl/utils.vhd
-add_fileset_file vblox_orca/constants_pkg.vhd VHDL PATH ../orca/ip/orca/hdl/constants_pkg.vhd
-add_fileset_file vblox_orca/components.vhd VHDL PATH ../orca/ip/orca/hdl/components.vhd
-add_fileset_file vblox_orca/alu.vhd VHDL PATH ../orca/ip/orca/hdl/alu.vhd
-add_fileset_file vblox_orca/branch_unit.vhd VHDL PATH ../orca/ip/orca/hdl/branch_unit.vhd
-add_fileset_file vblox_orca/decode.vhd VHDL PATH ../orca/ip/orca/hdl/decode.vhd
-add_fileset_file vblox_orca/execute.vhd VHDL PATH ../orca/ip/orca/hdl/execute.vhd
-add_fileset_file vblox_orca/instruction_fetch.vhd VHDL PATH ../orca/ip/orca/hdl/instruction_fetch.vhd
-add_fileset_file vblox_orca/load_store_unit.vhd VHDL PATH ../orca/ip/orca/hdl/load_store_unit.vhd
-add_fileset_file vblox_orca/register_file.vhd VHDL PATH ../orca/ip/orca/hdl/register_file.vhd
-add_fileset_file vblox_orca/orca.vhd VHDL PATH ../orca/ip/orca/hdl/orca.vhd TOP_LEVEL_FILE
-add_fileset_file vblox_orca/orca_core.vhd VHDL PATH ../orca/ip/orca/hdl/orca_core.vhd TOP_LEVEL_FILE
-add_fileset_file vblox_orca/sys_call.vhd VHDL PATH ../orca/ip/orca/hdl/sys_call.vhd
-add_fileset_file vblox_orca/vcp_handler.vhd VHDL PATH ../orca/ip/orca/hdl/vcp_handler.vhd
-add_fileset_file vblox_orca/a4l_master.vhd VHDL PATH ../orca/ip/orca/hdl/a4l_master.vhd
-add_fileset_file vblox_orca/axi_master.vhd VHDL PATH ../orca/ip/orca/hdl/axi_master.vhd
-add_fileset_file vblox_orca/cache_mux.vhd VHDL PATH ../orca/ip/orca/hdl/cache_mux.vhd
-add_fileset_file vblox_orca/oimm_register.vhd VHDL PATH ../orca/ip/orca/hdl/oimm_register.vhd
-add_fileset_file vblox_orca/oimm_throttler.vhd VHDL PATH ../orca/ip/orca/hdl/oimm_throttler.vhd
-add_fileset_file vblox_orca/memory_interface.vhd VHDL PATH ../orca/ip/orca/hdl/memory_interface.vhd
-add_fileset_file vblox_orca/cache_controller.vhd VHDL PATH ../orca/ip/orca/hdl/cache_controller.vhd
-add_fileset_file vblox_orca/cache.vhd VHDL PATH ../orca/ip/orca/hdl/cache.vhd
-add_fileset_file vblox_orca/bram_sdp_write_first.vhd VHDL PATH ../orca/ip/orca/hdl/bram_sdp_write_first.vhd
+add_fileset_file vblox_orca/utils.vhd VHDL PATH orca/ip/orca/hdl/utils.vhd
+add_fileset_file vblox_orca/constants_pkg.vhd VHDL PATH orca/ip/orca/hdl/constants_pkg.vhd
+add_fileset_file vblox_orca/components.vhd VHDL PATH orca/ip/orca/hdl/components.vhd
+add_fileset_file vblox_orca/alu.vhd VHDL PATH orca/ip/orca/hdl/alu.vhd
+add_fileset_file vblox_orca/branch_unit.vhd VHDL PATH orca/ip/orca/hdl/branch_unit.vhd
+add_fileset_file vblox_orca/decode.vhd VHDL PATH orca/ip/orca/hdl/decode.vhd
+add_fileset_file vblox_orca/execute.vhd VHDL PATH orca/ip/orca/hdl/execute.vhd
+add_fileset_file vblox_orca/instruction_fetch.vhd VHDL PATH orca/ip/orca/hdl/instruction_fetch.vhd
+add_fileset_file vblox_orca/load_store_unit.vhd VHDL PATH orca/ip/orca/hdl/load_store_unit.vhd
+add_fileset_file vblox_orca/register_file.vhd VHDL PATH orca/ip/orca/hdl/register_file.vhd
+add_fileset_file vblox_orca/orca.vhd VHDL PATH orca/ip/orca/hdl/orca.vhd TOP_LEVEL_FILE
+add_fileset_file vblox_orca/orca_core.vhd VHDL PATH orca/ip/orca/hdl/orca_core.vhd TOP_LEVEL_FILE
+add_fileset_file vblox_orca/sys_call.vhd VHDL PATH orca/ip/orca/hdl/sys_call.vhd
+add_fileset_file vblox_orca/vcp_handler.vhd VHDL PATH orca/ip/orca/hdl/vcp_handler.vhd
+add_fileset_file vblox_orca/a4l_master.vhd VHDL PATH orca/ip/orca/hdl/a4l_master.vhd
+add_fileset_file vblox_orca/axi_master.vhd VHDL PATH orca/ip/orca/hdl/axi_master.vhd
+add_fileset_file vblox_orca/cache_mux.vhd VHDL PATH orca/ip/orca/hdl/cache_mux.vhd
+add_fileset_file vblox_orca/oimm_register.vhd VHDL PATH orca/ip/orca/hdl/oimm_register.vhd
+add_fileset_file vblox_orca/oimm_throttler.vhd VHDL PATH orca/ip/orca/hdl/oimm_throttler.vhd
+add_fileset_file vblox_orca/memory_interface.vhd VHDL PATH orca/ip/orca/hdl/memory_interface.vhd
+add_fileset_file vblox_orca/cache_controller.vhd VHDL PATH orca/ip/orca/hdl/cache_controller.vhd
+add_fileset_file vblox_orca/cache.vhd VHDL PATH orca/ip/orca/hdl/cache.vhd
+add_fileset_file vblox_orca/bram_sdp_write_first.vhd VHDL PATH orca/ip/orca/hdl/bram_sdp_write_first.vhd
 
 add_fileset SIM_VHDL SIM_VHDL "" ""
 set_fileset_property SIM_VHDL TOP_LEVEL ORCA
 set_fileset_property SIM_VHDL ENABLE_RELATIVE_INCLUDE_PATHS false
 set_fileset_property SIM_VHDL ENABLE_FILE_OVERWRITE_MODE false
-add_fileset_file vblox_orca/utils.vhd VHDL PATH ../orca/ip/orca/hdl/utils.vhd
-add_fileset_file vblox_orca/constants_pkg.vhd VHDL PATH ../orca/ip/orca/hdl/constants_pkg.vhd
-add_fileset_file vblox_orca/components.vhd VHDL PATH ../orca/ip/orca/hdl/components.vhd
-add_fileset_file vblox_orca/alu.vhd VHDL PATH ../orca/ip/orca/hdl/alu.vhd
-add_fileset_file vblox_orca/branch_unit.vhd VHDL PATH ../orca/ip/orca/hdl/branch_unit.vhd
-add_fileset_file vblox_orca/decode.vhd VHDL PATH ../orca/ip/orca/hdl/decode.vhd
-add_fileset_file vblox_orca/execute.vhd VHDL PATH ../orca/ip/orca/hdl/execute.vhd
-add_fileset_file vblox_orca/instruction_fetch.vhd VHDL PATH ../orca/ip/orca/hdl/instruction_fetch.vhd
-add_fileset_file vblox_orca/load_store_unit.vhd VHDL PATH ../orca/ip/orca/hdl/load_store_unit.vhd
-add_fileset_file vblox_orca/register_file.vhd VHDL PATH ../orca/ip/orca/hdl/register_file.vhd
-add_fileset_file vblox_orca/orca.vhd VHDL PATH ../orca/ip/orca/hdl/orca.vhd
-add_fileset_file vblox_orca/orca_core.vhd VHDL PATH ../orca/ip/orca/hdl/orca_core.vhd
-add_fileset_file vblox_orca/sys_call.vhd VHDL PATH ../orca/ip/orca/hdl/sys_call.vhd
-add_fileset_file vblox_orca/vcp_handler.vhd VHDL PATH ../orca/ip/orca/hdl/vcp_handler.vhd
-add_fileset_file vblox_orca/a4l_master.vhd VHDL PATH ../orca/ip/orca/hdl/a4l_master.vhd
-add_fileset_file vblox_orca/axi_master.vhd VHDL PATH ../orca/ip/orca/hdl/axi_master.vhd
-add_fileset_file vblox_orca/cache_mux.vhd VHDL PATH ../orca/ip/orca/hdl/cache_mux.vhd
-add_fileset_file vblox_orca/oimm_register.vhd VHDL PATH ../orca/ip/orca/hdl/oimm_register.vhd
-add_fileset_file vblox_orca/oimm_throttler.vhd VHDL PATH ../orca/ip/orca/hdl/oimm_throttler.vhd
-add_fileset_file vblox_orca/memory_interface.vhd VHDL PATH ../orca/ip/orca/hdl/memory_interface.vhd
-add_fileset_file vblox_orca/cache_controller.vhd VHDL PATH ../orca/ip/orca/hdl/cache_controller.vhd
-add_fileset_file vblox_orca/cache.vhd VHDL PATH ../orca/ip/orca/hdl/cache.vhd
-add_fileset_file vblox_orca/bram_sdp_write_first.vhd VHDL PATH ../orca/ip/orca/hdl/bram_sdp_write_first.vhd
+add_fileset_file vblox_orca/utils.vhd VHDL PATH orca/ip/orca/hdl/utils.vhd
+add_fileset_file vblox_orca/constants_pkg.vhd VHDL PATH orca/ip/orca/hdl/constants_pkg.vhd
+add_fileset_file vblox_orca/components.vhd VHDL PATH orca/ip/orca/hdl/components.vhd
+add_fileset_file vblox_orca/alu.vhd VHDL PATH orca/ip/orca/hdl/alu.vhd
+add_fileset_file vblox_orca/branch_unit.vhd VHDL PATH orca/ip/orca/hdl/branch_unit.vhd
+add_fileset_file vblox_orca/decode.vhd VHDL PATH orca/ip/orca/hdl/decode.vhd
+add_fileset_file vblox_orca/execute.vhd VHDL PATH orca/ip/orca/hdl/execute.vhd
+add_fileset_file vblox_orca/instruction_fetch.vhd VHDL PATH orca/ip/orca/hdl/instruction_fetch.vhd
+add_fileset_file vblox_orca/load_store_unit.vhd VHDL PATH orca/ip/orca/hdl/load_store_unit.vhd
+add_fileset_file vblox_orca/register_file.vhd VHDL PATH orca/ip/orca/hdl/register_file.vhd
+add_fileset_file vblox_orca/orca.vhd VHDL PATH orca/ip/orca/hdl/orca.vhd
+add_fileset_file vblox_orca/orca_core.vhd VHDL PATH orca/ip/orca/hdl/orca_core.vhd
+add_fileset_file vblox_orca/sys_call.vhd VHDL PATH orca/ip/orca/hdl/sys_call.vhd
+add_fileset_file vblox_orca/vcp_handler.vhd VHDL PATH orca/ip/orca/hdl/vcp_handler.vhd
+add_fileset_file vblox_orca/a4l_master.vhd VHDL PATH orca/ip/orca/hdl/a4l_master.vhd
+add_fileset_file vblox_orca/axi_master.vhd VHDL PATH orca/ip/orca/hdl/axi_master.vhd
+add_fileset_file vblox_orca/cache_mux.vhd VHDL PATH orca/ip/orca/hdl/cache_mux.vhd
+add_fileset_file vblox_orca/oimm_register.vhd VHDL PATH orca/ip/orca/hdl/oimm_register.vhd
+add_fileset_file vblox_orca/oimm_throttler.vhd VHDL PATH orca/ip/orca/hdl/oimm_throttler.vhd
+add_fileset_file vblox_orca/memory_interface.vhd VHDL PATH orca/ip/orca/hdl/memory_interface.vhd
+add_fileset_file vblox_orca/cache_controller.vhd VHDL PATH orca/ip/orca/hdl/cache_controller.vhd
+add_fileset_file vblox_orca/cache.vhd VHDL PATH orca/ip/orca/hdl/cache.vhd
+add_fileset_file vblox_orca/bram_sdp_write_first.vhd VHDL PATH orca/ip/orca/hdl/bram_sdp_write_first.vhd
 
 #
 # parameters
@@ -298,12 +297,12 @@ set_parameter_property POWER_OPTIMIZED DESCRIPTION \
          "Enable optimizations for power at the cost of higher area and potentially lower fmax." ]
 add_display_item "Performance/Area Optimizations" POWER_OPTIMIZED PARAMETER
 
-add_parameter FAMILY string INTEL
+add_parameter          FAMILY string INTEL
+set_parameter_property FAMILY DEFAULT_VALUE "GENERIC"
+set_parameter_property FAMILY DISPLAY_NAME "FAMILY"
 set_parameter_property FAMILY HDL_PARAMETER true
-set_parameter_property FAMILY visible false
+set_parameter_property FAMILY visible true
 add_display_item "Performance/Area Optimizations" FAMILY PARAMETER
-
-
 
 add_parameter          INSTRUCTION_REQUEST_REGISTER natural 1
 set_parameter_property INSTRUCTION_REQUEST_REGISTER DEFAULT_VALUE 1
@@ -362,30 +361,26 @@ add_display_item "Memory and Cache" LOG2_BURSTLENGTH PARAMETER
 add_parameter AXI_ID_WIDTH positive 2
 set_parameter_property AXI_ID_WIDTH HDL_PARAMETER true
 set_parameter_property AXI_ID_WIDTH ALLOWED_RANGES 2:8
-set_parameter_property AXI_ID_WIDTH visible false
+set_parameter_property AXI_ID_WIDTH visible true
 add_display_item "Memory and Cache" AXI_ID_WIDTH PARAMETER
 
 add_parameter          AVALON_AUX natural 1
 set_parameter_property AVALON_AUX ALLOWED_RANGES 0:1
 set_parameter_property AVALON_AUX HDL_PARAMETER true
-set_parameter_property AVALON_AUX visible false
-set_parameter_property AVALON_AUX derived true
+set_parameter_property AVALON_AUX visible true
 add_display_item "Memory and Cache" AVALON_AUX PARAMETER
 
 add_parameter          LMB_AUX natural 0
 set_parameter_property LMB_AUX ALLOWED_RANGES 0:1
 set_parameter_property LMB_AUX HDL_PARAMETER true
-set_parameter_property LMB_AUX visible false
-set_parameter_property LMB_AUX derived true
+set_parameter_property LMB_AUX visible true
 add_display_item "Memory and Cache" LMB_AUX PARAMETER
 
 add_parameter          WISHBONE_AUX natural 0
 set_parameter_property WISHBONE_AUX ALLOWED_RANGES 0:1
 set_parameter_property WISHBONE_AUX HDL_PARAMETER true
-set_parameter_property WISHBONE_AUX visible false
-set_parameter_property WISHBONE_AUX derived true
+set_parameter_property WISHBONE_AUX visible true
 add_display_item "Memory and Cache" WISHBONE_AUX PARAMETER
-
 
 add_display_item "Memory and Cache" "Instruction Cache and IC AXI4 Master" GROUP
 

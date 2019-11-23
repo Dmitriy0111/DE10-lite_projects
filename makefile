@@ -131,3 +131,6 @@ comp_prog:
 
 clean_prog:
 	rm -rfd $(OUT_DIR)
+
+init_sub_repo:
+	make -C $(PWD)/synth/$(CUR_PROJECT) init
