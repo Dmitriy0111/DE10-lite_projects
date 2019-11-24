@@ -1,5 +1,5 @@
 #
-#  File            :   ihex2hex.py
+#  File            :   ihex2tcl.py
 #  Autor           :   Vlasov D.V.
 #  Data            :   2019.11.23
 #  Language        :   Python
@@ -13,10 +13,18 @@ print(sys.argv[1])
 
 pars_file  = open(sys.argv[1] , "r")
 
-out_file_0 = open(sys.argv[2] + "_0.hex", "w")    # bank_0
-out_file_1 = open(sys.argv[2] + "_1.hex", "w")    # bank_1
-out_file_2 = open(sys.argv[2] + "_2.hex", "w")    # bank_2
-out_file_3 = open(sys.argv[2] + "_3.hex", "w")    # bank_3
+tcl_out    = open(sys.argv[2] + ".tcl",   "w")    # tcl
+
+tcl_out.write('''
+proc get_default_master {} {
+	return [ lindex [ get_service_paths master ] 0 ]
+}
+ 
+set p0 [ get_default_master ]
+
+set m0 [claim_service master $p0 ""]
+
+''')
 
 hi_addr = 0
 
@@ -46,19 +54,18 @@ for lines in pars_file:
         i = 0
         # write addr
         st_addr = str("@{:s}\n".format( hex( ( ( hi_addr << 16 ) + lo_addr ) >> 2 )[2:] ))
-        out_file_0.write(st_addr)
-        out_file_1.write(st_addr)
-        out_file_2.write(st_addr)
-        out_file_3.write(st_addr)
+        tcl_out.write("master_write_memory $m0 0x{:s} ".format( hex( ( ( hi_addr << 16 ) + lo_addr + i ) )[2:] ))
         while(1):
             # write data
-            out_file_0.write(lines[0:2] + "\n")
-            out_file_1.write(lines[2:4] + "\n")
-            out_file_2.write(lines[4:6] + "\n")
-            out_file_3.write(lines[6:8] + "\n")
-            lines = lines[8:]
-            i += 4
+            tcl_out.write("0x{:s} ".format(lines[0:2]))
+            lines = lines[2:]
+            i += 1
             if( i >= lenght ):
+                tcl_out.write("\n")
                 break
+
+tcl_out.write('''
+close_service master $m0'''
+)
 
 print("Conversion comlete!")

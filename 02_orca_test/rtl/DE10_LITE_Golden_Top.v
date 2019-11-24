@@ -142,10 +142,13 @@ module DE10_LITE_Golden_Top(
 	assign en = SW[0];
 	assign LEDR[9 : 8] = cnt[width-1 -: 2];
 
-	assign i2c_0_scl_in = ARDUINO_IO[3];
-	assign ARDUINO_IO[3] = i2c_0_scl_oe ? 1'b0 : 1'bz;
-	assign i2c_0_sda_in = ARDUINO_IO[2];
-	assign ARDUINO_IO[2] = i2c_0_sda_oe ? 1'b0 : 1'bz;
+	assign GSENSOR_SDO = '1;
+	assign GSENSOR_CS_N = '1;
+
+	assign i2c_0_scl_in = GSENSOR_SCLK;
+	assign GSENSOR_SCLK = i2c_0_scl_oe ? 1'b0 : 1'bz;
+	assign i2c_0_sda_in = GSENSOR_SDI;
+	assign GSENSOR_SDI  = i2c_0_sda_oe ? 1'b0 : 1'bz;
 
 	counter
 	#(
@@ -170,10 +173,10 @@ module DE10_LITE_Golden_Top(
 		.reset_reset_n	( rstn			),
 		.uart_0_rxd		( ARDUINO_IO[0]	),
 		.uart_0_txd		( ARDUINO_IO[1]	),
-		.i2c_0_sda_in	( ),
-		.i2c_0_scl_in	( ),
-		.i2c_0_sda_oe	( ),
-		.i2c_0_scl_oe	( )
+		.i2c_0_sda_in	( i2c_0_sda_in	),
+		.i2c_0_scl_in	( i2c_0_scl_in	),
+		.i2c_0_sda_oe	( i2c_0_sda_oe	),
+		.i2c_0_scl_oe	( i2c_0_scl_oe	)
 	);
 
 //=======================================================

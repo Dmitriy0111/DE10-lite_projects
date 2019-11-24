@@ -42,3 +42,5 @@ $(EXEC): $(OBJS)
 	$(OBJDUMP) $(OBJDUMPF) $(EXEC) > $(LST)
 	$(OBJCOPY) $(EXEC) $(IHEX) $(CPF)
 	python sw/ihex2hex.py $(IHEX) $(HEX)
+	python sw/ihex2tcl.py $(IHEX) $(HEX)
+

@@ -89,8 +89,10 @@ synth_create: synth_clean
 	mkdir -p synth
 	cp -r $(SYNTH_TEMPLATE) $(SYNTH_DIR)
 
-synth_build_q:
+generate_sub_qsys:
 	make -C $(PWD)/synth/$(CUR_PROJECT) generate_qsys
+
+synth_build_q:
 	quartus_sh --flow compile $(SYNTH_DIR)/$(CUR_PROJECT).qpf
 
 synth_gui_q:
