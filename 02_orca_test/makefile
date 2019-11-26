@@ -12,12 +12,12 @@ init: \
 	clone_ip
 	
 generate_qsys:
+	qsys-generate rtl/clk_buf/clk_buf.qsys --family=MAX10 --part=10M50DAF484C6GES --synthesis=VERILOG --simulation=VERILOG
 	qsys-generate rtl/orca_system/orca_systems.qsys --family=MAX10 --part=10M50DAF484C6GES --synthesis=VERILOG --simulation=VERILOG
 
-CCF	= -march=rv32i -mabi=ilp32
 LDF	= -b elf32-littleriscv
 CPF = -O ihex
-OBJDUMPF = -M no-aliases -S -w --disassemble-zeroes
+OBJDUMPF = -M no-aliases -S -w --disassemble-all
 TOOL = riscv-none-embed
 
 AS = $(TOOL)-as

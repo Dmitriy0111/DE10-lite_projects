@@ -1,7 +1,7 @@
 /*
 *  File            :   main.c
 *  Autor           :   Vlasov D.V.
-*  Data            :   2019.11.2105
+*  Data            :   2019.11.21
 *  Language        :   C
 *  Description     :   This is examples for working with GPIO, UART with orca riscv core
 *  Copyright(c)    :   2019 Vlasov D.V.
@@ -28,11 +28,7 @@ void main (void)
     while(1)
     {
         delay(delay_value);
-        for(int i=0;i<14;i++){
-            UART_0->uart_tx=uart_msg[i];
-            GPIO_0->gpio_o ++;
-            while( ( UART_0->uart_status & 0x40 ) == 0 );
-            GPIO_0->gpio_o ++;
-        }
+        uart_send_msg(UART_0, uart_msg, sizeof(uart_msg));
+        GPIO_0->gpio_o ++;
     }
 }

@@ -9,9 +9,9 @@
 
 #include "..\h\delay.h"
 
-void delay(int delay_c)
+void delay(uint32_t delay_c)
 {
-    int delay_v = 0;
+    uint32_t delay_v = 0;
     delay_v = delay_c;
     while(delay_v)
         delay_v--;

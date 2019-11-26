@@ -1,7 +1,7 @@
 # 
 #  File            :   main.S
 #  Autor           :   Vlasov D.V.
-#  Data            :   2018.12.05
+#  Data            :   2019.11.21
 #  Language        :   Assembler
 #  Description     :   This is example for working with GPIO
 #  Copyright(c)    :   2018 - 2019 Vlasov D.V.

@@ -7,4 +7,6 @@
 *  Copyright(c)    :   2019 Vlasov D.V.
 */
 
-void delay(int delay_c);
+#include "risc_v_types.h"
+
+void delay(uint32_t delay_c);

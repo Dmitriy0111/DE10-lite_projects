@@ -1,7 +1,7 @@
 /*
 *  File            :   main.c
 *  Autor           :   Vlasov D.V.
-*  Data            :   2019.11.2105
+*  Data            :   2019.11.24
 *  Language        :   C
 *  Description     :   This is examples for working with GPIO, UART, I2C with orca riscv core
 *  Copyright(c)    :   2019 Vlasov D.V.
@@ -32,15 +32,16 @@
 #define ADXL345WA_ALT   ( ( ADXL345_ALT << 1 ) | 0x00 )
 #define ADXL345RA_ALT   ( ( ADXL345_ALT << 1 ) | 0x01 )
 
-#define hex2ascii(val,num)  ( ( ( val >> ( 4 * num ) ) & 0x0F ) ) <= 0x09 ? ( ( ( val >> ( 4 * num ) ) & 0x0F ) + 0x30 ) : ( ( ( val >> ( 4 * num ) ) & 0x0F ) + 0x41 - 10 )
+uint8_t hex2ascii(uint32_t hex_v, uint8_t num);
 
 char con_msg[19] = "Connected device = ";
-unsigned i2c_msg[5] = {STA | ADXL345WA, DEVID_ADDR, STA | ADXL345RA, DEVID_ADDR, 0x00};
+char devid_msg[6] = "0x00\n\r";
+uint16_t i2c_tx_msg[5] = {STA | ADXL345WA, DEVID_ADDR, STA | ADXL345RA, DEVID_ADDR, STO | 0x00};
+char     i2c_rx_msg[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
 
 void main (void)
 {
-    unsigned rec_val= 0x00;
-    // set i2c frequency
+    // settings for i2c interface
     I2C_0->i2c_ctrl = 0x0D;
     I2C_0->i2c_scl_low = 2000;
     I2C_0->i2c_scl_high = 2000;
@@ -50,18 +51,17 @@ void main (void)
     while(1)
     {
         delay(delay_value);
-        for(int i=0;i<19;i++){
-            UART_0->uart_tx=con_msg[i];
-            while( ( UART_0->uart_status & 0x40 ) == 0 );
-        }
-        GPIO_0->gpio_o = read_mem(I2C_0,i2c_msg,5,&rec_val);
-        UART_0->uart_tx=hex2ascii(rec_val,1);
-        while( ( UART_0->uart_status & 0x40 ) == 0 );
-        UART_0->uart_tx=hex2ascii(rec_val,0);
-        while( ( UART_0->uart_status & 0x40 ) == 0 );
-        UART_0->uart_tx=0x0A;
-        while( ( UART_0->uart_status & 0x40 ) == 0 );
-        UART_0->uart_tx=0x0D;
-        while( ( UART_0->uart_status & 0x40 ) == 0 );
+        uart_send_msg(UART_0, con_msg, sizeof(con_msg));
+        GPIO_0->gpio_o = i2c_read(I2C_0,i2c_tx_msg,i2c_rx_msg,sizeof(i2c_rx_msg));
+        devid_msg[2] = hex2ascii(i2c_rx_msg[4],1);
+        devid_msg[3] = hex2ascii(i2c_rx_msg[4],0);
+        uart_send_msg(UART_0, devid_msg, sizeof(devid_msg));
     }
+}
+
+uint8_t hex2ascii(uint32_t hex_v, uint8_t num){
+    hex_v = hex_v >> (num << 2);
+    hex_v = 0x0F & hex_v;
+    hex_v = hex_v <= 0x09 ? hex_v + 0x30 : hex_v + 0x41 - 0x0A;
+    return hex_v;
 }

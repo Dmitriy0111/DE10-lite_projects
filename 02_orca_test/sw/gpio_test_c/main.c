@@ -1,7 +1,7 @@
 /*
 *  File            :   main.c
 *  Autor           :   Vlasov D.V.
-*  Data            :   2019.11.2105
+*  Data            :   2019.11.21
 *  Language        :   C
 *  Description     :   This is examples for working with GPIO with orca riscv core
 *  Copyright(c)    :   2019 Vlasov D.V.
