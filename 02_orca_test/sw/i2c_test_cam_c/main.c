@@ -41,10 +41,10 @@
 
 uint8_t hex2ascii(uint32_t hex_v, uint8_t num);
 
-char first_msg[24] = "i2c_test_cam_c Rev_1.0\n\r";
+char first_msg[] = "i2c_test_cam_c Rev_1.0\n\r";
 
-char con_msg[21] = "CAM_x chip_version = ";
-char chip_ver_msg[8] = "0x0000\n\r";
+char con_msg[] = "CAM_x chip_version = ";
+char chip_ver_msg[] = "0x0000\n\r";
 uint16_t i2c_tx_msg[6] = {STA | CAM_0_WA, CHIP_VER_ADDR, STA | CAM_0_RA, CHIP_VER_ADDR, 0x00, STO | 0x00};
 char     i2c_rx_msg[6] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 

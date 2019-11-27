@@ -49,7 +49,7 @@ open_q: synth_gui_q
 # simulation - Modelsim
 
 VSIM_DIR = $(PWD)/sim
-RUN_DIR = $(PWD)/$(CUR_PROJECT)/run/run.tcl
+RUN_DIR = $(PWD)/synth/$(CUR_PROJECT)/run/array_test.tcl
 
 VLIB_BIN = cd $(VSIM_DIR) && vlib
 VLOG_BIN = cd $(VSIM_DIR) && vlog
@@ -102,38 +102,16 @@ synth_load_q:
 	quartus_pgm -c $(CABLE_NAME) -m JTAG -o "p;$(SYNTH_DIR)/output_files/$(CUR_PROJECT).sof"
 
 ########################################################
-# compile nios II program
-
-PROG_DIR = $(PWD)/synth/$(CUR_PROJECT)/sw
-OUT_DIR = $(PWD)/synth/$(CUR_PROJECT)/sw_out
-BSP_DIR = $(OUT_DIR)/bsp
-APP_DIR = $(OUT_DIR)/app
-SOPCINFO_DIR = $(PWD)/synth/$(CUR_PROJECT)/rtl/system/system.sopcinfo
-BSP_TYPE = hal
-
-comp_nios_prog:
-	mkdir -p $(OUT_DIR)
-	nios2-bsp $(BSP_TYPE) $(OUT_DIR)/bsp $(SOPCINFO_DIR)
-	nios2-app-generate-makefile --bsp-dir $(BSP_DIR) --elf-name $(OUT_DIR)/main.elf --app-dir $(APP_DIR) --src-dir $(PROG_DIR)
-	make -C $(APP_DIR)
-	make -C $(APP_DIR) mem_init_generate
-	nios2-elf-objdump -M no-aliases -S -w --disasseble-zeroes $(OUT_DIR)/main.elf > $(OUT_DIR)/main.lst
-
-clean_nios_prog:
-	rm -rfd $(OUT_DIR)
-
-########################################################
-# compile riscv program
+# compile riscv or nios II program
 
 PROG_DIR = $(PWD)/synth/$(CUR_PROJECT)/sw
 OUT_DIR = $(PWD)/synth/$(CUR_PROJECT)/sw_out
 
 comp_prog:
-	mkdir -p $(OUT_DIR)
 	make -C $(PWD)/synth/$(CUR_PROJECT) comp_prog
 
 clean_prog:
-	rm -rfd $(OUT_DIR)
+	make -C $(PWD)/synth/$(CUR_PROJECT) clean_prog
 
 init_sub_repo:
 	make -C $(PWD)/synth/$(CUR_PROJECT) init
