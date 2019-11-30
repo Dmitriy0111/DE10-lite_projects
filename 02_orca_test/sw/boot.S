@@ -14,23 +14,35 @@
 .equ    EXCEP_MCLR,     0xFD
 .equ    EXCEP_MSET,     0x02
 
-reset_vec:
-    j       _main               # 0x00  vector  ( reset vector )
-exception:
-    lui     a3, %hi(GPIO_0_BASE)
-    sw      a4, GPIO_GPO(a3)
-    ori     a4, a4, EXCEP_MSET
+# macro for set gpio outputs to '1' with mask
+.altmacro
+.macro set_gpio_o gpio_base, bit_mask
+    lui     a3, %hi(gpio_base)
     lw      a4, GPIO_GPO(a3)
+    ori     a4, a4, bit_mask
+    sw      a4, GPIO_GPO(a3)
+.endm
+
+# macro for set gpio outputs to '0' with mask
+.altmacro
+.macro clr_gpio_o gpio_base, bit_mask
+    lui     a3, %hi(gpio_base)
+    lw      a4, GPIO_GPO(a3)
+    andi    a4, a4, bit_mask
+    sw      a4, GPIO_GPO(a3)
+.endm
+
+reset_vec:                                  # reset vector
+    j           _main               
+exception:                                  # ecxeption vector
+    set_gpio_o  GPIO_0_BASE, EXCEP_MSET
 dead_hook:
-    j       dead_hook
+    j           dead_hook
 
 _main:
-    la      t0, exception
-    csrw    mtvec, t0
-    lui     a3, %hi(GPIO_0_BASE)
-    sw      a4, GPIO_GPO(a3)
-    ori     a4, a4, EXCEP_MCLR
-    lw      a4, GPIO_GPO(a3)
-    la      sp, _stack_start    # load stack pointer value
-    j       main                # jump to main program
+    la          t0, exception
+    csrw        mtvec, t0
+    clr_gpio_o  GPIO_0_BASE, EXCEP_MCLR
+    la          sp, _stack_start            # load stack pointer value
+    j           main                        # jump to main program
     

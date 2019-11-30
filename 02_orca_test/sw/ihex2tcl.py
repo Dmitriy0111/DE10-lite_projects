@@ -113,7 +113,7 @@ puts "Start program device"
 
 #ihex2tcl(ihex_file, tcl_file)
 
-tcl_file.write("master_write_32 $m0 {:s} 0x00000000\n".format(sys.argv[3]))
+#tcl_file.write("master_write_32 $m0 {:s} 0x00000000\n".format(sys.argv[3]))
 
 tcl_file.write('''
 puts "Loading memory"
@@ -122,7 +122,7 @@ puts "Verifying memory"
 ver_mem $m0 prog_mem $max_row
 ''')
 
-tcl_file.write("\nmaster_write_32 $m0 {:s} 0x00000001\n".format(sys.argv[3]))
+#tcl_file.write("\nmaster_write_32 $m0 {:s} 0x00000001\n".format(sys.argv[3]))
 tcl_file.write('''
 puts "End program device"
 

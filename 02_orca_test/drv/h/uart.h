@@ -7,10 +7,10 @@
 *  Copyright(c)    :   2019 Vlasov D.V.
 */
 
-#include "risc_v_types.h"
+#ifndef __UART_H
+#define __UART_H
 
-#define UART_BASE   0x00010020
-#define UART_0_BASE ( UART_BASE + 0x00 )
+#include "risc_v_types.h"
 
 typedef struct{
     volatile    uint32_t    uart_rx;        // receive data
@@ -21,7 +21,7 @@ typedef struct{
     volatile    uint32_t    uart_eof;       // end-of-packet
 } uart_typedef;
 
-#define UART_0  ( (uart_typedef *) UART_0_BASE)
-
 void uart_send_symbol(uart_typedef* UART_, char symbol);
 void uart_send_msg(uart_typedef* UART_, char* msg, uint32_t msg_len);
+
+#endif // __UART_H

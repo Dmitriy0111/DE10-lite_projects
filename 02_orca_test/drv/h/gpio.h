@@ -7,10 +7,10 @@
 *  Copyright(c)    :   2019 Vlasov D.V.
 */
 
-#include "risc_v_types.h"
+#ifndef __GPIO_H
+#define __GPIO_H
 
-#define GPIO_BASE   0x00010000
-#define GPIO_0_BASE ( GPIO_BASE + 0x00 )
+#include "risc_v_types.h"
 
 typedef struct{
     volatile    uint32_t    gpio_i;         // GPIO input register
@@ -21,9 +21,9 @@ typedef struct{
     volatile    uint32_t    gpio_irq_v;     // GPIO interrupt register
 } gpio_typedef;
 
-#define GPIO_0  ( (gpio_typedef *) GPIO_0_BASE)
-
 // defining functions
 void gpio_set_port_bit(gpio_typedef* GPIO_, uint32_t bit);
 void gpio_clr_port_bit(gpio_typedef* GPIO_, uint32_t bit);
 void gpio_toggle_port_bit(gpio_typedef* GPIO_, uint32_t bit);
+
+#endif // __GPIO_H

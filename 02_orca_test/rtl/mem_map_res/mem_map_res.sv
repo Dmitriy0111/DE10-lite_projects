@@ -27,7 +27,6 @@ module mem_map_res
 
     assign write_req = chipselect && write;
     assign readdata = reset_int;
-    assign reset_out = ~reset_int;
 
     reg_we  #( 1 )  reset_int_reg   ( clk, rstn, write_req, writedata[0], reset_int );
 

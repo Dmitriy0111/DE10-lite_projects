@@ -7,6 +7,7 @@
 *  Copyright(c)    :   2019 Vlasov D.V.
 */
 
+#include "..\system.h"
 #include "..\..\drv\h\gpio.h"
 #include "..\..\drv\h\delay.h"
 
@@ -22,6 +23,7 @@
 
 void main (void)
 {
+    GPIO_0->gpio_o = 0;
     while(1)
     {
         delay(delay_value);
