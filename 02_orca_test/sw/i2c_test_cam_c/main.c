@@ -8,6 +8,7 @@
 */
 
 #include "..\system.h"
+#include "..\version.h"
 #include "..\..\drv\h\gpio.h"
 #include "..\..\drv\h\delay.h"
 #include "..\..\drv\h\uart.h"
@@ -37,12 +38,12 @@
 uint8_t hex2ascii(uint32_t hex_v, uint8_t num);
 
 uint8_t chip_addr;
+uint8_t clk_div = 0;
 uint8_t reg_addr = 0;
-
-char first_msg[] = "i2c_test_cam_c Rev_1.0\n\r";
 
 char con_msg[] = "CAM_x reg 0xxx = ";
 char chip_ver_msg[] = "0x0000\n\r";
+uint8_t set_new_clk_div[] = {0x0A,0x00,0x00};
 uint8_t i2c_buf[3] = {CHIP_VER_ADDR, 0x00, 0x00};
 
 #if TEST_CAM_FUNC == 1
@@ -67,6 +68,7 @@ void test_cam(uint8_t index){
 
 void main (void)
 {
+    clk_div = 0;
     // settings for i2c interface
     I2C_0->i2c_ctrl = 0x0D;
     I2C_0->i2c_scl_low = 2000;
@@ -82,6 +84,13 @@ void main (void)
         #if   TEST_CAM_FUNC == 1
             test_cam(0);
             test_cam(1);
+            if( reg_addr == 0x00 ) {
+                set_new_clk_div[2] = ( 1 << ( clk_div-1 ) );
+                i2c_write( I2C_0, CAM_0_ADDR, set_new_clk_div, 3 );
+                clk_div ++;
+                if( clk_div == 8 )
+                    clk_div = 0;
+            }
             reg_addr++;
         #elif TEST_CAM_FUNC == 0
             con_msg[4] = '0';

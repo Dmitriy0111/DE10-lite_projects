@@ -107,11 +107,11 @@ synth_load_q:
 PROG_DIR = $(PWD)/synth/$(CUR_PROJECT)/sw
 OUT_DIR = $(PWD)/synth/$(CUR_PROJECT)/sw_out
 
-comp_prog:
-	make -C $(PWD)/synth/$(CUR_PROJECT) comp_prog
+prog_comp:
+	make -C $(PWD)/synth/$(CUR_PROJECT) prog_comp
 
-clean_prog:
-	make -C $(PWD)/synth/$(CUR_PROJECT) clean_prog
+prog_clean:
+	make -C $(PWD)/synth/$(CUR_PROJECT) prog_clean
 
 init_sub_repo:
 	make -C $(PWD)/synth/$(CUR_PROJECT) init

@@ -46,13 +46,24 @@ MM_RESET_ADDR ?= 0x00040000
 create_out_dir:
 	mkdir -p $(OUT_DIR)
 
-prog_comp: create_out_dir $(EXEC)
+prog_comp: create_out_dir get_git_rev $(EXEC)
 
 prog_clean: 
 	rm -rfd $(OUT_DIR)
 
 prog_dev:
 	system-console --script=$(PROG_TCL)
+
+PROG_REV ?= 0
+
+get_git_rev:
+	$(eval PROG_REV := $(shell git rev-list --count HEAD))
+	echo "#ifndef __VERSION_H" >  sw/version.h
+	echo "#define __VERSION_H" >> sw/version.h
+	echo "" >> sw/version.h
+	echo "    char first_msg[] = \"$(PROG_NAME) Rev=$(PROG_REV)\n\r\";" >> sw/version.h
+	echo "" >> sw/version.h
+	echo "#endif // __VERSION_H" >> sw/version.h
 
 $(EXEC): $(OBJS)
 	$(LD) $(LDF) $(OBJS) -o $(EXEC)
